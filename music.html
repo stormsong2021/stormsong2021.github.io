@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>jplayer for music</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!--<link href="css/jplayer/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />-->
+<link rel="stylesheet" type="text/css" href="css/bubble.css"/>
+<link rel="stylesheet" href="css/music.css" />
+<script type="text/javascript" src="js/music/jplayer/jquery.min.js"></script>
+<script type="text/javascript" src="js/music/jplayer/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="js/music/jplayer/jplayer.playlist.min.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+
+	new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer",
+		cssSelectorAncestor: "#jp_container_1"
+	}, [
+		{
+			title:"Romance d'Amour",
+			mp3:"source/mp3/Romance d'Amour.mp3",
+		},
+		{
+			title:"Croatian Rhapsody",
+			mp3:"source/mp3/Croatian Rhapsody.mp3",
+			artist:"Maksim Mrvica",
+		},
+	], {
+		swfPath: "css",
+		supplied: "oga, mp3",
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true
+	});
+});
+//]]>
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $(".menu").click(function(){
+	  	if ($(".jp-playlist").css("display")=="none") {
+	  		$(".jp-playlist").show(100);
+	  	} else{
+	  		$(".jp-playlist").hide(100);
+	  	}
+	  });
+	});
+</script>
+</head>
+<body>
+	<div id="jquery_jplayer" class="jp-jplayer"></div>
+	<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+		<div class="jp-type-playlist">
+			<div class="jp-gui jp-interface">
+				<div class="irc">
+					
+				</div>
+				<div class="jp-controls">
+					<button class="jp-previous" role="button" tabindex="0"></button>
+					<button class="jp-play" role="button" tabindex="0"></button>
+					<button class="jp-next" role="button" tabindex="0"></button>
+					<button class="jp-stop" role="button" tabindex="0"></button>
+				</div>
+				<div class="pt">
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+						</div>
+					</div> 
+					<div class="jp-time-holder">
+						<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+						<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+					</div>
+				</div>
+				<div class="jp-volume-controls">
+					<button class="jp-mute" role="button" tabindex="0">mute</button>
+					<button class="jp-volume-max" role="button" tabindex="0">max volume</button>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+				</div>
+				<!--<div class="jp-toggles">
+					<button class="jp-repeat" role="button" tabindex="0">repeat</button>
+					<button class="jp-shuffle" role="button" tabindex="0">shuffle</button>
+				</div>-->
+			</div>
+			<div id="menu">
+				<button class="menu"></button>
+			</div>
+		</div>
+		<div class="jp-playlist">
+			<ul>
+				<li>&nbsp;</li>
+			</ul>
+		</div>
+	</div>
+	<canvas id="c1"></canvas>
+	<canvas id="c2"></canvas>
+	<script src="js/music/jplayer/bubble.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

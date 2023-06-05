@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var canvas=document.createElement("canvas");
+		canvas.width=window.innerWidth;
+		canvas.height=window.innerHeight;
+		canvas.style.backgroundColor="black";
+		document.body.appendChild(canvas);
+		var content=canvas.getContext("2d");
+		/*创建数组*/
+		var particles=[];
+		
+		setInterval(function(){
+			content.clearRect(0,0,canvas.width,canvas.height);
+			var particle=new Particle(canvas.width*0.5,canvas.height*0.5);
+            /*particle.drawParticle();*/
+           
+           /*添加到数组中*/
+          particles.push(particle);
+          
+          for(var i=0;i<particles.length;i++){
+             var par=particles[i];
+             par.drawParticle();
+             par.updataFrame();
+          }
+          if(particles.length>200){
+          	//保持数组中元素个数不变
+          	particles.shift();
+          }
+		},30);
+		
+			
+		/*方法名首字母大写为类方法*/
+	   function Particle(x,y){
+	   this.xPos=x;
+	   this.yPos=y;
+	   this.mycolor=getRandomColor();
+	   //重力，正值向下位移
+	   this.g=-5;
+	   this.v=0.1;
+	   this.xVel=Math.random()*4-2;
+	   
+	   this.drawParticle=function(){
+	   	content.beginPath();
+		/*rgb三颜色，单色值：0~255 a:透明度：0~1，1不透明，0全透*/
+		content.fillStyle=this.mycolor;
+		content.arc(this.xPos,this.yPos,5,0,Math.PI*2,true);
+		content.fill();
+		content.closePath();
+	   }
+		this.updataFrame=function(){
+			this.g+=this.v;
+			this.yPos+=this.g;
+			this.xPos+=this.xVel;
+		}
+	   }
+	  
+	   function getRandomColor(){
+	   	//#FFFFFF->十进制数16777215;tostring(16)--转换为16进制
+	   	return "#"+ Math.floor(Math.random()*16777215).toString(16);
+	   }
+	   
+	</script>
+</html>
